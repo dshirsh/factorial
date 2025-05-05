@@ -15,7 +15,7 @@ func main() {
 	numCPU := runtime.NumCPU()
 	fmt.Println("\n# CPUs: ",numCPU)     // Mac Mini M2 Pro system uses 6 performance and 4 efficiency cores (10 total)
 
-	n := 1000000                         // Change this to compute n!
+	n := 10000                          // Change this to compute n!
 
 	fmt.Printf("Computing %d!\n", n)
 
