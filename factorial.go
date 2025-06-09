@@ -6,30 +6,48 @@ import (
 	"runtime"
 	"sync"
 	"os"
+	"time"
 )
 
 func main() {
 
-	runtime.GOMAXPROCS(runtime.NumCPU()) // Use all available cores
+	runtime.GOMAXPROCS(runtime.NumCPU())  // Use all available cores
 
 	numCPU := runtime.NumCPU()
-	fmt.Println("\n# CPUs: ",numCPU)     // Mac Mini M2 Pro system uses 6 performance and 4 efficiency cores (10 total)
+	fmt.Println("\n# CPUs: ",numCPU)      // Mac Mini M2 Pro system uses 6 performance and 4 efficiency cores (10 total)
 
-	n := 10000                          // Change this to compute n!
+	n := 100000000                    	  // Change this to compute n!
 
-	fmt.Printf("Computing %d!\n", n)
+	fmt.Printf("\nComputing %d!\n", n)
+ 	
+	start1 := time.Now()
 
 	result := Factorial(n)
+
+	elapsed1 := time.Since(start1)
+
+    fmt.Printf("Factorial took %s\n", elapsed1.Truncate(time.Second))
 	
+	start2 := time.Now()
+
 	fmt.Println("Length of result:", len(result.String()))
 
+	elapsed2 := time.Since(start2)
+
+	fmt.Printf("Calculation time for string length %s\n", elapsed2.Truncate(time.Second) )
+
 	// Write factorial to file as a string
+
+	start3 := time.Now()
 
 	err := writeBigIntToFile("/Volumes/NVME2TB/factorial.txt", result)
 	if err != nil {
 		fmt.Println("\nError writing to file:", err)
 	} else {
-		fmt.Println("\nSuccessfully wrote factorial string to /Volumes/NVME2TB/factorial.txt")
+		elapsed3 := time.Since(start3)
+		fmt.Println("\nSuccessfully wrote string to file in:", elapsed3.Truncate(time.Second))
+		elapsed := time.Since(start1)
+    	fmt.Printf("\nTotal program time: %s", elapsed.Truncate(time.Second))
 	}
 
 }
