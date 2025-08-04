@@ -16,7 +16,7 @@ func main() {
 	numCPU := runtime.NumCPU()
 	fmt.Println("\n# CPUs: ",numCPU)      // Mac Mini M2 Pro system uses 6 performance and 4 efficiency cores (10 total)
 
-	n := 100000000                    	  // Change this to compute n!
+	n := 100000                 	  // Change this to compute n!
 
 	fmt.Printf("\nComputing %d!\n", n)
  	
@@ -47,7 +47,7 @@ func main() {
 		elapsed3 := time.Since(start3)
 		fmt.Println("\nSuccessfully wrote string to file in:", elapsed3.Truncate(time.Second))
 		elapsed := time.Since(start1)
-    	fmt.Printf("\nTotal program time: %s", elapsed.Truncate(time.Second))
+    	fmt.Printf("\nTotal program time: %s\n", elapsed.Truncate(time.Second))
 	}
 
 }
